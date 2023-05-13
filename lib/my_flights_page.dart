@@ -1,5 +1,8 @@
 import 'package:emirates_airlines_concept_ui/resources/r.dart';
+import 'package:emirates_airlines_concept_ui/widgets/fading_item_list/fading_item_list.dart';
+import 'package:emirates_airlines_concept_ui/widgets/fading_item_list/fading_item_list_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:snake_button/snake_button.dart';
 
 class MyFlightsPage extends StatefulWidget {
   const MyFlightsPage({super.key});
@@ -10,30 +13,26 @@ class MyFlightsPage extends StatefulWidget {
 
 class _MyFlightsPageState extends State<MyFlightsPage>
     with TickerProviderStateMixin {
-  late AnimationController _animationController;
-  late Map<int, AnimatedListItemData> _map = {};
+  late final AnimationController _animationController;
+  late final SnakeButtonController _snakeButtonController;
+  late final FadingItemListController _fadingItemListController;
 
   @override
   void initState() {
     super.initState();
-    for (int i = 0; i < 5; i++) {
-      final aC = AnimationController(
-          vsync: this, duration: Duration(milliseconds: 200));
-      _map[i] = AnimatedListItemData(_buildFlightItem(aC), aC);
-    }
+    _snakeButtonController = SnakeButtonController();
+    _fadingItemListController = FadingItemListController();
     _animationController = AnimationController(
       vsync: this,
-      duration: Duration(
+      duration: const Duration(
         milliseconds: 600,
       ),
     );
+
     _animationController.forward().whenComplete(
       () {
-        for (int i = 0; i < 5; i++) {
-          Future.delayed(Duration(milliseconds: 300 * i), () {
-            _map[i]!.animationController.forward();
-          });
-        }
+        _fadingItemListController.showItems();
+        _snakeButtonController.toggle();
       },
     );
   }
@@ -41,6 +40,30 @@ class _MyFlightsPageState extends State<MyFlightsPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: SnakeButton(
+        controller: _snakeButtonController,
+        snakeAnimationDuration: const Duration(milliseconds: 500),
+        snakeColor: R.secondaryColor,
+        snakeWidth: 2.0,
+        borderRadius: 20.0,
+        child: SizedBox(
+          height: 70,
+          width: 70,
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: R.secondaryColor,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20.0),
+              ),
+            ),
+            onPressed: () {},
+            child: Icon(
+              Icons.add,
+              color: R.primaryColor,
+            ),
+          ),
+        ),
+      ),
       body: SafeArea(
         bottom: false,
         child: Column(
@@ -86,9 +109,12 @@ class _MyFlightsPageState extends State<MyFlightsPage>
   Widget get _buildHeader => Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Icon(
-            Icons.menu,
-            color: R.primaryColor,
+          GestureDetector(
+            onTap: () => _snakeButtonController.toggle(),
+            child: Icon(
+              Icons.menu,
+              color: R.primaryColor,
+            ),
           ),
           Container(
             height: 40.0,
@@ -101,165 +127,141 @@ class _MyFlightsPageState extends State<MyFlightsPage>
         ],
       );
 
-  Widget _buildFlightsListWidget() => Stack(
-        alignment: Alignment.bottomCenter,
-        children: [
-          Container(
-            height: double.infinity,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              color: R.primaryColor,
-              borderRadius: const BorderRadius.vertical(
-                top: Radius.circular(40),
-              ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.only(top: 32.0),
-              child: ListView.builder(
-                itemCount: 4,
-                itemBuilder: (ctx, i) => _map[i]!.widget,
-              ),
-            ),
+  Widget _buildFlightsListWidget() => Container(
+        height: double.infinity,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: R.primaryColor,
+          borderRadius: const BorderRadius.vertical(
+            top: Radius.circular(40),
           ),
-          Container(
-            height: 200.0,
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  R.primaryColor.withOpacity(0.0),
-                  R.primaryColor,
-                ],
-              ),
-            ),
+        ),
+        child: FadingItemList(
+          fadingItemListController: _fadingItemListController,
+          listItems: List.generate(
+            5,
+            (index) => _buildFlightItem,
           ),
-        ],
+        ),
       );
 
-  Widget _buildFlightItem(AnimationController controller) => AnimatedBuilder(
-        animation: controller,
-        builder: (context, child) => Opacity(
-          opacity: controller.value * 1.0,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 32.0, top: 32.0, right: 32.0),
-            child: Column(
+  Widget get _buildFlightItem => Padding(
+        padding: const EdgeInsets.only(left: 32.0, top: 32.0, right: 32.0),
+        child: Column(
+          children: [
+            Row(
               children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            "DBC",
-                            style: TextStyle(
-                                color: R.secondaryColor, fontSize: 32.0),
-                          ),
-                          SizedBox(
-                            height: 6.0,
-                          ),
-                          Text(
-                            "Dabaca",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 12.0,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 24.0,
-                          ),
-                          Text(
-                            "DATE",
-                            style: TextStyle(color: R.tertiaryColor),
-                          ),
-                          SizedBox(
-                            height: 6.0,
-                          ),
-                          Text(
-                            "MAY 19, 8:35 AM",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 12.0,
-                            ),
-                          ),
-                        ],
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "DBC",
+                        style:
+                            TextStyle(color: R.secondaryColor, fontSize: 32.0),
                       ),
-                    ),
-                    Expanded(
-                      child: Column(
-                        children: [
-                          Icon(
-                            Icons.flight,
-                            color: R.secondaryColor,
-                          ),
-                          SizedBox(
-                            height: 6.0,
-                          ),
-                          Text(
-                            "1h 35m",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          )
-                        ],
+                      SizedBox(
+                        height: 6.0,
                       ),
-                    ),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Text(
-                            "ADY",
-                            style: TextStyle(
-                                color: R.secondaryColor, fontSize: 32.0),
-                          ),
-                          SizedBox(
-                            height: 6.0,
-                          ),
-                          Text(
-                            "Almedy",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 12.0,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 24.0,
-                          ),
-                          Text(
-                            "FLIGHT NO",
-                            style: TextStyle(color: R.tertiaryColor),
-                          ),
-                          SizedBox(
-                            height: 6.0,
-                          ),
-                          Text(
-                            "KB76",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 12.0,
-                            ),
-                          ),
-                        ],
+                      Text(
+                        "Dabaca",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12.0,
+                        ),
                       ),
-                    ),
-                  ],
+                      SizedBox(
+                        height: 24.0,
+                      ),
+                      Text(
+                        "DATE",
+                        style: TextStyle(color: R.tertiaryColor),
+                      ),
+                      SizedBox(
+                        height: 6.0,
+                      ),
+                      Text(
+                        "MAY 19, 8:35 AM",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12.0,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-                SizedBox(
-                  height: 32.0,
+                Expanded(
+                  child: Column(
+                    children: [
+                      Icon(
+                        Icons.flight,
+                        color: R.secondaryColor,
+                      ),
+                      SizedBox(
+                        height: 6.0,
+                      ),
+                      Text(
+                        "1h 35m",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      )
+                    ],
+                  ),
                 ),
-                Divider(
-                  color: R.secondaryColor,
-                )
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        "ADY",
+                        style:
+                            TextStyle(color: R.secondaryColor, fontSize: 32.0),
+                      ),
+                      SizedBox(
+                        height: 6.0,
+                      ),
+                      Text(
+                        "Almedy",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12.0,
+                        ),
+                      ),
+                      SizedBox(
+                        height: 24.0,
+                      ),
+                      Text(
+                        "FLIGHT NO",
+                        style: TextStyle(color: R.tertiaryColor),
+                      ),
+                      SizedBox(
+                        height: 6.0,
+                      ),
+                      Text(
+                        "KB76",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 12.0,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ],
             ),
-          ),
+            SizedBox(
+              height: 32.0,
+            ),
+            Divider(
+              color: R.secondaryColor,
+            )
+          ],
         ),
       );
 }
