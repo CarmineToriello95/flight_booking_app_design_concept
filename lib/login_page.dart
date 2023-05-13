@@ -1,3 +1,4 @@
+import 'package:emirates_airlines_concept_ui/widgets/custom_text_field.dart';
 import 'package:emirates_airlines_concept_ui/resources/r.dart';
 import 'package:flutter/material.dart';
 
@@ -36,45 +37,25 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Widget get _buildEmailField => TextField(
-        decoration: InputDecoration(
-          prefixIcon: Icon(
-            Icons.email,
-            color: R.secondaryColor,
-          ),
-          labelText: "E-MAIL",
-          labelStyle: TextStyle(color: R.tertiaryColor),
-          floatingLabelBehavior: FloatingLabelBehavior.always,
-          enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: R.tertiaryColor),
-          ),
-          focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: R.secondaryColor),
-          ),
+  Widget get _buildEmailField => CustomTextField(
+        labelText: "E-MAIL",
+        prefixIcon: Icon(
+          Icons.email,
+          color: R.secondaryColor,
         ),
-        cursorColor: R.tertiaryColor,
-        style: TextStyle(color: R.secondaryColor),
+        mainColor: R.secondaryColor,
+        secondaryColor: R.tertiaryColor,
       );
 
-  Widget get _buildPasswordField => TextField(
-        decoration: InputDecoration(
-          prefixIcon: Icon(
-            Icons.lock,
-            color: R.secondaryColor,
-          ),
-          labelText: "PASSWORD",
-          labelStyle: TextStyle(color: R.tertiaryColor),
-          floatingLabelBehavior: FloatingLabelBehavior.always,
-          enabledBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: R.tertiaryColor),
-          ),
-          focusedBorder: UnderlineInputBorder(
-            borderSide: BorderSide(color: R.secondaryColor),
-          ),
+  Widget get _buildPasswordField => CustomTextField(
+        labelText: "PASSWORD",
+        prefixIcon: Icon(
+          Icons.lock,
+          color: R.secondaryColor,
         ),
-        cursorColor: R.tertiaryColor,
-        obscureText: true,
-        style: TextStyle(color: R.secondaryColor),
+        mainColor: R.secondaryColor,
+        secondaryColor: R.tertiaryColor,
+        isTextObscure: true,
       );
 
   Widget get _buildLoginButton => FilledButton(
