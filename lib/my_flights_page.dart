@@ -1,8 +1,23 @@
 import 'package:emirates_airlines_concept_ui/resources/r.dart';
 import 'package:emirates_airlines_concept_ui/widgets/fading_item_list/fading_item_list.dart';
 import 'package:emirates_airlines_concept_ui/widgets/fading_item_list/fading_item_list_controller.dart';
+import 'package:emirates_airlines_concept_ui/widgets/flights_list_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:snake_button/snake_button.dart';
+
+List<FlightData> flightsData = List.generate(
+  5,
+  (index) => FlightData(
+    "DBC",
+    "Dabaca",
+    "MAY 19",
+    "ADY",
+    "Almedy",
+    "KB7$index",
+    "1h 35m",
+    "8:35 AM",
+  ),
+);
 
 class MyFlightsPage extends StatefulWidget {
   const MyFlightsPage({super.key});
@@ -140,128 +155,10 @@ class _MyFlightsPageState extends State<MyFlightsPage>
           fadingItemListController: _fadingItemListController,
           listItems: List.generate(
             5,
-            (index) => _buildFlightItem,
+            (index) => FlightsListItemWidget(
+              flightData: flightsData[index],
+            ),
           ),
-        ),
-      );
-
-  Widget get _buildFlightItem => Padding(
-        padding: const EdgeInsets.only(left: 32.0, top: 32.0, right: 32.0),
-        child: Column(
-          children: [
-            Row(
-              children: [
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "DBC",
-                        style:
-                            TextStyle(color: R.secondaryColor, fontSize: 32.0),
-                      ),
-                      SizedBox(
-                        height: 6.0,
-                      ),
-                      Text(
-                        "Dabaca",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12.0,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 24.0,
-                      ),
-                      Text(
-                        "DATE",
-                        style: TextStyle(color: R.tertiaryColor),
-                      ),
-                      SizedBox(
-                        height: 6.0,
-                      ),
-                      Text(
-                        "MAY 19, 8:35 AM",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12.0,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Expanded(
-                  child: Column(
-                    children: [
-                      Icon(
-                        Icons.flight,
-                        color: R.secondaryColor,
-                      ),
-                      SizedBox(
-                        height: 6.0,
-                      ),
-                      Text(
-                        "1h 35m",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      )
-                    ],
-                  ),
-                ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text(
-                        "ADY",
-                        style:
-                            TextStyle(color: R.secondaryColor, fontSize: 32.0),
-                      ),
-                      SizedBox(
-                        height: 6.0,
-                      ),
-                      Text(
-                        "Almedy",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12.0,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 24.0,
-                      ),
-                      Text(
-                        "FLIGHT NO",
-                        style: TextStyle(color: R.tertiaryColor),
-                      ),
-                      SizedBox(
-                        height: 6.0,
-                      ),
-                      Text(
-                        "KB76",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12.0,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 32.0,
-            ),
-            Divider(
-              color: R.secondaryColor,
-            )
-          ],
         ),
       );
 }
