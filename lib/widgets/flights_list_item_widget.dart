@@ -170,7 +170,7 @@ class FlightsListItemWidget extends StatelessWidget {
                   ),
                 ),
                 TextSpan(
-                  text: "\$ $ticketPrice",
+                  text: "\$ ${ticketPrice.toStringAsFixed(2)}",
                   style: TextStyle(
                     color: R.secondaryColor,
                     fontSize: 24.0,

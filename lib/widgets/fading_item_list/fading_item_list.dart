@@ -78,6 +78,12 @@ class _FadingItemListState extends State<FadingItemList>
           child: listItem,
         ),
       );
+
+  @override
+  void dispose() {
+    super.dispose();
+    _listItemsMap.values.map((e) => e.animationController.dispose());
+  }
 }
 
 class AnimatedListItemData {
