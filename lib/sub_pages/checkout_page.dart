@@ -1,7 +1,7 @@
 import 'package:emirates_airlines_concept_ui/resources/r.dart';
-import 'package:emirates_airlines_concept_ui/widgets/flights_list_item_widget.dart';
 import 'package:flutter/material.dart';
 
+import '../models/models.dart';
 import '../widgets/custom_option_selector.dart';
 
 final List<CustomOptionSelectorData> paymentOptions = [

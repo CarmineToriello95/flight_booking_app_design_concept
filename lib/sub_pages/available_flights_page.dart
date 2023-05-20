@@ -1,24 +1,11 @@
 import 'package:emirates_airlines_concept_ui/resources/r.dart';
+import 'package:emirates_airlines_concept_ui/utils/hard_coded_data.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/days_calendar_widget.dart';
 import '../widgets/fading_item_list/fading_item_list.dart';
 import '../widgets/fading_item_list/fading_item_list_controller.dart';
 import '../widgets/flights_list_item_widget.dart';
-
-List<FlightData> flightsData = List.generate(
-  5,
-  (index) => FlightData(
-    "DBC",
-    "Dabaca",
-    "MAY 19",
-    "ADY",
-    "Almedy",
-    "KB7$index",
-    "1h 35m",
-    "8:35 AM",
-  ),
-);
 
 class AvailableFlightsPage extends StatefulWidget {
   final Function(bool)? isSelectionCompleted;
@@ -76,20 +63,22 @@ class _AvailableFlightsPageState extends State<AvailableFlightsPage> {
 
   Widget _buildFlightCard(int itemIndex, String flightNumber) => ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: flightsData[itemIndex].flightNumber == flightNumber
-              ? R.tertiaryColor.withOpacity(0.5)
-              : R.primaryColor,
+          backgroundColor:
+              Utils.availableFlights[itemIndex].flightNumber == flightNumber
+                  ? R.tertiaryColor.withOpacity(0.5)
+                  : R.primaryColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20.0),
             side: BorderSide(color: R.tertiaryColor),
           ),
         ),
         onPressed: () {
-          _selectedFlight.value = flightsData[itemIndex].flightNumber;
+          _selectedFlight.value =
+              Utils.availableFlights[itemIndex].flightNumber;
           widget.isSelectionCompleted?.call(true);
         },
         child: FlightsListItemWidget.withPrice(
-          flightData: flightsData[itemIndex],
+          flightData: Utils.availableFlights[itemIndex],
           ticketPrice: 170.00,
         ),
       );

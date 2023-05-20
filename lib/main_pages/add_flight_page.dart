@@ -7,9 +7,9 @@ import 'package:emirates_airlines_concept_ui/widgets/fade_in_out_widget/fade_in_
 import 'package:emirates_airlines_concept_ui/widgets/fade_in_out_widget/fade_in_out_widget_controller.dart';
 import 'package:flutter/material.dart';
 
+import '../models/models.dart';
 import '../sub_pages/available_flights_page.dart';
 import '../sub_pages/route_selection_page.dart';
-import '../widgets/flights_list_item_widget.dart';
 
 class AddFlightPage extends StatefulWidget {
   final AddFlightPageController addFlightPageController;
@@ -46,28 +46,28 @@ class _AddFlightPageState extends State<AddFlightPage> {
       ),
       SeatSelectionPage(
         flightData: FlightData(
-          "DBC",
-          "Dabaca",
-          "MAY 19",
-          "ADY",
-          "Almedy",
-          "KB76",
-          "1h 35m",
-          "8:35 AM",
+          departureShort: "DBC",
+          departure: "Dabaca",
+          date: "MAY 19",
+          destinationShort: "ADY",
+          destination: "Almedy",
+          flightNumber: "KB76",
+          duration: "1h 35m",
+          time: "8:35 AM",
         ),
         isSelectionCompleted: (isCompleted) =>
             widget.isSingleTabSelectionCompleted?.call(isCompleted),
       ),
       CheckoutPage(
         flightData: FlightData(
-          "DBC",
-          "Dabaca",
-          "MAY 19",
-          "ADY",
-          "Almedy",
-          "KB76",
-          "1h 35m",
-          "8:35 AM",
+          departureShort: "DBC",
+          departure: "Dabaca",
+          date: "MAY 19",
+          destinationShort: "ADY",
+          destination: "Almedy",
+          flightNumber: "KB76",
+          duration: "1h 35m",
+          time: "8:35 AM",
         ),
         isSelectionCompleted: (isCompleted) =>
             widget.isSingleTabSelectionCompleted?.call(isCompleted),

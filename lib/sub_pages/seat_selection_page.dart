@@ -1,8 +1,9 @@
 import 'package:emirates_airlines_concept_ui/resources/r.dart';
 import 'package:emirates_airlines_concept_ui/widgets/fade_in_out_widget/fade_in_out_widget.dart';
 import 'package:emirates_airlines_concept_ui/widgets/fade_in_out_widget/fade_in_out_widget_controller.dart';
-import 'package:emirates_airlines_concept_ui/widgets/flights_list_item_widget.dart';
 import 'package:flutter/material.dart';
+
+import '../models/models.dart';
 
 const List<int> freeSeats = [1, 4, 7, 10, 13, 16, 20];
 final List<SeatData> leftSideSeats = List.generate(

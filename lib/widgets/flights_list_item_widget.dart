@@ -1,3 +1,4 @@
+import 'package:emirates_airlines_concept_ui/models/models.dart';
 import 'package:emirates_airlines_concept_ui/resources/r.dart';
 import 'package:flutter/material.dart';
 
@@ -83,8 +84,8 @@ class FlightsListItemWidget extends StatelessWidget {
           const SizedBox(
             height: 6.0,
           ),
-          const Text(
-            "MAY 19, 8:35 AM",
+          Text(
+            "${flightData.date} ${flightData.time}",
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
@@ -181,26 +182,4 @@ class FlightsListItemWidget extends StatelessWidget {
           )
         ],
       );
-}
-
-class FlightData {
-  final String departureShort;
-  final String departure;
-  final String date;
-  final String destinationShort;
-  final String destination;
-  final String flightNumber;
-  final String duration;
-  final String time;
-
-  FlightData(
-    this.departureShort,
-    this.departure,
-    this.date,
-    this.destinationShort,
-    this.destination,
-    this.flightNumber,
-    this.duration,
-    this.time,
-  );
 }

@@ -1,22 +1,9 @@
+import 'package:emirates_airlines_concept_ui/utils/hard_coded_data.dart';
 import 'package:emirates_airlines_concept_ui/widgets/fading_item_list/fading_item_list_controller.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/fading_item_list/fading_item_list.dart';
 import '../widgets/flights_list_item_widget.dart';
-
-List<FlightData> flightsData = List.generate(
-  5,
-  (index) => FlightData(
-    "DBC",
-    "Dabaca",
-    "MAY 19",
-    "ADY",
-    "Almedy",
-    "KB7$index",
-    "1h 35m",
-    "8:35 AM",
-  ),
-);
 
 class MyFlightsListPage extends StatelessWidget {
   final FadingItemListController fadingItemListController;
@@ -31,7 +18,7 @@ class MyFlightsListPage extends StatelessWidget {
         listItems: List.generate(
           5,
           (index) => FlightsListItemWidget(
-            flightData: flightsData[index],
+            flightData: Utils.myFlightsData[index],
           ),
         ),
       );
