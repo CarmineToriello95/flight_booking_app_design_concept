@@ -3,7 +3,7 @@ import 'package:emirates_airlines_concept_ui/widgets/fade_in_out_widget/fade_in_
 import 'package:emirates_airlines_concept_ui/widgets/fade_in_out_widget/fade_in_out_widget_controller.dart';
 import 'package:flutter/material.dart';
 
-import '../models/models.dart';
+import '../models/flight_data.dart';
 
 const List<int> freeSeats = [1, 4, 7, 10, 13, 16, 20];
 final List<SeatData> leftSideSeats = List.generate(
@@ -19,7 +19,7 @@ final List<SeatData> rightSideSeats = List.generate(
 
 class SeatSelectionPage extends StatefulWidget {
   final FlightData flightData;
-  final Function(bool)? isSelectionCompleted;
+  final Function(bool, FlightData)? isSelectionCompleted;
   const SeatSelectionPage({
     Key? key,
     required this.flightData,
@@ -218,7 +218,12 @@ class _SeatSelectionPageState extends State<SeatSelectionPage> {
                     _selectedSeat.value = seats[i];
                     _fadeInOutWidgetController.show();
                   }
-                  widget.isSelectionCompleted?.call(true);
+                  widget.isSelectionCompleted?.call(
+                    true,
+                    widget.flightData.copyWith(
+                      seat: _selectedSeat.value!.id,
+                    ),
+                  );
                 }
               },
               child: Container(

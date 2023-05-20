@@ -8,6 +8,7 @@ class FlightData {
   final String duration;
   final String time;
   final double? price;
+  final String? seat;
 
   FlightData({
     required this.departureShort,
@@ -19,6 +20,7 @@ class FlightData {
     required this.duration,
     required this.time,
     this.price,
+    this.seat,
   });
 
   FlightData copyWith({
@@ -31,6 +33,7 @@ class FlightData {
     String? duration,
     String? time,
     double? price,
+    String? seat,
   }) =>
       FlightData(
         departureShort: departureShort ?? this.departureShort,
@@ -42,5 +45,6 @@ class FlightData {
         duration: duration ?? this.duration,
         time: time ?? this.time,
         price: price ?? this.price,
+        seat: seat ?? this.seat,
       );
 }

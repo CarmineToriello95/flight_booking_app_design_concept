@@ -1,4 +1,4 @@
-import 'package:emirates_airlines_concept_ui/models/models.dart';
+import 'package:emirates_airlines_concept_ui/models/flight_data.dart';
 import 'package:emirates_airlines_concept_ui/widgets/days_calendar_widget.dart';
 
 class Utils {

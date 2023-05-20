@@ -1,7 +1,7 @@
 import 'package:emirates_airlines_concept_ui/resources/r.dart';
 import 'package:flutter/material.dart';
 
-import '../models/models.dart';
+import '../models/flight_data.dart';
 import '../widgets/custom_option_selector.dart';
 
 final List<CustomOptionSelectorData> paymentOptions = [
@@ -59,7 +59,7 @@ class CheckoutPage extends StatelessWidget {
             Align(
               alignment: Alignment.bottomRight,
               child: Text(
-                "\$ 170.00",
+                "\$ ${flightData.price!.toStringAsFixed(2)}",
                 style: TextStyle(
                   color: R.secondaryColor,
                   fontSize: 32.0,
@@ -209,7 +209,7 @@ class CheckoutPage extends StatelessWidget {
         height: 8.0,
       ),
       Text(
-        "19A",
+        flightData.seat!,
         style: TextStyle(
           color: Colors.white,
           fontWeight: FontWeight.bold,

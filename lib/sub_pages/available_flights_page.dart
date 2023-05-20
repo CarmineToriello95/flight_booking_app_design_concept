@@ -1,3 +1,4 @@
+import 'package:emirates_airlines_concept_ui/models/flight_data.dart';
 import 'package:emirates_airlines_concept_ui/resources/r.dart';
 import 'package:emirates_airlines_concept_ui/utils/hard_coded_data.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +9,7 @@ import '../widgets/fading_item_list/fading_item_list_controller.dart';
 import '../widgets/flights_list_item_widget.dart';
 
 class AvailableFlightsPage extends StatefulWidget {
-  final Function(bool)? isSelectionCompleted;
+  final Function(bool, FlightData)? isSelectionCompleted;
   const AvailableFlightsPage({
     super.key,
     this.isSelectionCompleted,
@@ -75,7 +76,12 @@ class _AvailableFlightsPageState extends State<AvailableFlightsPage> {
         onPressed: () {
           _selectedFlight.value =
               Utils.availableFlights[itemIndex].flightNumber;
-          widget.isSelectionCompleted?.call(true);
+          widget.isSelectionCompleted?.call(
+            true,
+            Utils.availableFlights[itemIndex].copyWith(
+              price: 170.00,
+            ),
+          );
         },
         child: FlightsListItemWidget.withPrice(
           flightData: Utils.availableFlights[itemIndex],

@@ -7,7 +7,7 @@ import 'package:emirates_airlines_concept_ui/widgets/fade_in_out_widget/fade_in_
 import 'package:emirates_airlines_concept_ui/widgets/fade_in_out_widget/fade_in_out_widget_controller.dart';
 import 'package:flutter/material.dart';
 
-import '../models/models.dart';
+import '../models/flight_data.dart';
 import '../sub_pages/available_flights_page.dart';
 import '../sub_pages/route_selection_page.dart';
 
@@ -41,36 +41,24 @@ class _AddFlightPageState extends State<AddFlightPage> {
             widget.isSingleTabSelectionCompleted?.call(isCompleted),
       ),
       AvailableFlightsPage(
-        isSelectionCompleted: (isCompleted) =>
-            widget.isSingleTabSelectionCompleted?.call(isCompleted),
-      ),
-      SeatSelectionPage(
-        flightData: FlightData(
-          departureShort: "DBC",
-          departure: "Dabaca",
-          date: "MAY 19",
-          destinationShort: "ADY",
-          destination: "Almedy",
-          flightNumber: "KB76",
-          duration: "1h 35m",
-          time: "8:35 AM",
-        ),
-        isSelectionCompleted: (isCompleted) =>
-            widget.isSingleTabSelectionCompleted?.call(isCompleted),
-      ),
-      CheckoutPage(
-        flightData: FlightData(
-          departureShort: "DBC",
-          departure: "Dabaca",
-          date: "MAY 19",
-          destinationShort: "ADY",
-          destination: "Almedy",
-          flightNumber: "KB76",
-          duration: "1h 35m",
-          time: "8:35 AM",
-        ),
-        isSelectionCompleted: (isCompleted) =>
-            widget.isSingleTabSelectionCompleted?.call(isCompleted),
+        isSelectionCompleted: (isCompleted, flight) {
+          widget.isSingleTabSelectionCompleted?.call(isCompleted);
+          _pages.add(
+            SeatSelectionPage(
+              flightData: flight,
+              isSelectionCompleted: (isCompleted, flight) {
+                widget.isSingleTabSelectionCompleted?.call(isCompleted);
+                _pages.add(
+                  CheckoutPage(
+                    flightData: flight,
+                    isSelectionCompleted: (isCompleted) =>
+                        widget.isSingleTabSelectionCompleted?.call(isCompleted),
+                  ),
+                );
+              },
+            ),
+          );
+        },
       ),
     ];
     _pageNotifier = ValueNotifier(0);
