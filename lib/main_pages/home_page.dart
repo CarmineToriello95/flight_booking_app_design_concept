@@ -1,4 +1,4 @@
-import 'package:emirates_airlines_concept_ui/sub_pages/my_flights_list_page.dart';
+import 'package:emirates_airlines_concept_ui/main_pages/my_flights_list_page.dart';
 import 'package:emirates_airlines_concept_ui/resources/r.dart';
 import 'package:emirates_airlines_concept_ui/widgets/fade_in_out_widget/fade_in_out_widget.dart';
 import 'package:emirates_airlines_concept_ui/widgets/fade_in_out_widget/fade_in_out_widget_controller.dart';
@@ -8,6 +8,8 @@ import 'package:snake_button/snake_button.dart';
 
 import 'add_flight_page_controller.dart';
 import 'add_flight_page.dart';
+
+enum MainPageEnum { myFlights, addFlight }
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -23,8 +25,8 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
   late final AddFlightPageController _addFlightPageController;
   late final FadeInOutWidgetController _sheetContentFadeInOutController;
   late final FadeInOutWidgetController _headerFadeInOutController;
-  late final ValueNotifier<int> _currentPage;
-  late final List<Widget> pages;
+  late final ValueNotifier<MainPageEnum> _currentMainPage;
+  late final Map<MainPageEnum, Widget> pages;
 
   @override
   void initState() {
@@ -51,14 +53,14 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
       },
     );
 
-    _currentPage = ValueNotifier(0);
+    _currentMainPage = ValueNotifier(MainPageEnum.myFlights);
     _addFlightPageController = AddFlightPageController();
 
-    pages = [
-      MyFlightsListPage(
+    pages = {
+      MainPageEnum.myFlights: MyFlightsListPage(
         fadingItemListController: _fadingItemListController,
       ),
-      AddFlightPage(
+      MainPageEnum.addFlight: AddFlightPage(
         isSingleTabSelectionCompleted: (isCompleted) {
           isCompleted
               ? _snakeButtonController.show()
@@ -66,23 +68,12 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         },
         addFlightPageController: _addFlightPageController,
       ),
-    ];
+    };
   }
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        floatingActionButton: SnakeButton(
-          controller: _snakeButtonController,
-          snakeAnimationDuration: const Duration(milliseconds: 500),
-          snakeColor: R.secondaryColor,
-          snakeWidth: 2.0,
-          borderRadius: 20.0,
-          child: SizedBox(
-            height: 70,
-            width: 70,
-            child: _buildFloatingButton,
-          ),
-        ),
+        floatingActionButton: _buildFloatingButton(),
         body: SafeArea(
           bottom: false,
           child: Column(
@@ -100,25 +91,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 child: FadeInOutWidget(
                   slideDuration: const Duration(milliseconds: 500),
                   fadeInOutWidgetController: _headerFadeInOutController,
-                  child: ValueListenableBuilder<int>(
-                    valueListenable: _currentPage,
-                    builder: (_, value, __) => value == 0
-                        ? Text(
-                            "My flights",
-                            style: TextStyle(
-                              color: R.primaryColor,
-                              fontSize: 30.0,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          )
-                        : Text(
-                            "Add flight",
-                            style: TextStyle(
-                              color: R.primaryColor,
-                              fontSize: 30.0,
-                              fontWeight: FontWeight.w600,
-                            ),
-                          ),
+                  child: ValueListenableBuilder<MainPageEnum>(
+                    valueListenable: _currentMainPage,
+                    builder: (_, value, __) => _isMyFlightsPage
+                        ? _myFlightsTextWidget
+                        : _addFlightTextWidget,
                   ),
                 ),
               ),
@@ -136,6 +113,24 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               ),
             ],
           ),
+        ),
+      );
+
+  Text get _myFlightsTextWidget => Text(
+        "My flights",
+        style: TextStyle(
+          color: R.primaryColor,
+          fontSize: 30.0,
+          fontWeight: FontWeight.w600,
+        ),
+      );
+
+  Text get _addFlightTextWidget => Text(
+        "Add flight",
+        style: TextStyle(
+          color: R.primaryColor,
+          fontSize: 30.0,
+          fontWeight: FontWeight.w600,
         ),
       );
 
@@ -171,46 +166,63 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         ),
         child: FadeInOutWidget(
           slideDuration: const Duration(milliseconds: 500),
-          slideEndingOffset: const Offset(0, 0.05),
+          slideEndingOffset: const Offset(0, 0.04),
           fadeInOutWidgetController: _sheetContentFadeInOutController,
-          child: ValueListenableBuilder<int>(
-            valueListenable: _currentPage,
-            builder: (_, value, __) => pages[value],
+          child: ValueListenableBuilder<MainPageEnum>(
+            valueListenable: _currentMainPage,
+            builder: (_, value, __) => pages[value]!,
           ),
         ),
       );
 
-  Widget get _buildFloatingButton => ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          backgroundColor: R.secondaryColor,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20.0),
-          ),
+  Widget _buildFloatingButton() {
+    final elevatedButton = ElevatedButton(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: R.secondaryColor,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20.0),
         ),
-        onPressed: () => _onMainButtonClick(),
-        child: ValueListenableBuilder<int>(
-          valueListenable: _currentPage,
-          builder: (_, value, __) => Icon(
-            value == 0 ? Icons.add : Icons.arrow_forward_ios,
-            color: R.primaryColor,
-          ),
+      ),
+      onPressed: () => _onMainButtonClick(),
+      child: ValueListenableBuilder<MainPageEnum>(
+        valueListenable: _currentMainPage,
+        builder: (_, value, __) => Icon(
+          value == MainPageEnum.myFlights ? Icons.add : Icons.arrow_forward_ios,
+          color: R.primaryColor,
         ),
-      );
+      ),
+    );
+
+    return SnakeButton(
+      controller: _snakeButtonController,
+      snakeAnimationDuration: const Duration(milliseconds: 500),
+      snakeColor: R.secondaryColor,
+      snakeWidth: 2.0,
+      borderRadius: 20.0,
+      child: SizedBox(
+        height: 70,
+        width: 70,
+        child: elevatedButton,
+      ),
+    );
+  }
 
   void _onMainButtonClick() {
     _snakeButtonController.hide(from: 0.3);
-    if (_currentPage.value < pages.length - 1) {
+    if (_isMyFlightsPage) {
       _sheetContentFadeInOutController.hide();
       _headerFadeInOutController.hide();
 
       Future.delayed(const Duration(milliseconds: 500), () {
-        _currentPage.value = _currentPage.value + 1;
+        _currentMainPage.value = MainPageEnum.addFlight;
       }).whenComplete(() {
         _sheetContentFadeInOutController.show();
         _headerFadeInOutController.show();
       });
-    } else if (_currentPage.value == pages.length - 1) {
+    } else {
       _addFlightPageController.nextTab();
     }
   }
+
+  bool get _isMyFlightsPage => _currentMainPage.value == MainPageEnum.myFlights;
 }

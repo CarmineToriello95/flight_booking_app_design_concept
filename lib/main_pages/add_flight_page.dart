@@ -98,7 +98,7 @@ class _AddFlightPageState extends State<AddFlightPage> {
             Expanded(
               child: FadeInOutWidget(
                 slideDuration: const Duration(milliseconds: 500),
-                slideEndingOffset: const Offset(0, 0.05),
+                slideEndingOffset: const Offset(0, 0.04),
                 fadeInOutWidgetController: _fadeInOutWidgetController,
                 child: ValueListenableBuilder(
                   valueListenable: widget.addFlightPageController.pageNotifier,
