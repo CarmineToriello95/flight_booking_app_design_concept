@@ -7,7 +7,6 @@ import 'package:emirates_airlines_concept_ui/widgets/fade_in_out_widget/fade_in_
 import 'package:emirates_airlines_concept_ui/widgets/fade_in_out_widget/fade_in_out_widget_controller.dart';
 import 'package:flutter/material.dart';
 
-import '../models/flight_data.dart';
 import '../sub_pages/available_flights_page.dart';
 import '../sub_pages/route_selection_page.dart';
 

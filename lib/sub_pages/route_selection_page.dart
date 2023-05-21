@@ -11,6 +11,8 @@ final List<TextFieldData> fieldsData = [
       color: R.secondaryColor,
     ),
     "FROM",
+    TextEditingController(),
+    "Dabaca",
   ),
   TextFieldData(
     Icon(
@@ -18,6 +20,8 @@ final List<TextFieldData> fieldsData = [
       color: R.secondaryColor,
     ),
     "TO",
+    TextEditingController(),
+    "Almedy",
   ),
   TextFieldData(
     Icon(
@@ -25,6 +29,8 @@ final List<TextFieldData> fieldsData = [
       color: R.secondaryColor,
     ),
     "DATE",
+    TextEditingController(),
+    "May 19",
   ),
   TextFieldData(
     Icon(
@@ -32,6 +38,8 @@ final List<TextFieldData> fieldsData = [
       color: R.secondaryColor,
     ),
     "TRAVELER",
+    TextEditingController(),
+    "2",
   ),
   TextFieldData(
     Icon(
@@ -39,6 +47,8 @@ final List<TextFieldData> fieldsData = [
       color: R.secondaryColor,
     ),
     "CLASS",
+    TextEditingController(),
+    "Economy",
   ),
 ];
 
@@ -78,7 +88,10 @@ class RouteSelectionPage extends StatelessWidget {
             children: [
               CustomOptionSelector(
                 options: routeData,
-                onOptionClicked: (_) => isSelectionCompleted?.call(true),
+                onOptionClicked: (_) {
+                  _fillFields();
+                  isSelectionCompleted?.call(true);
+                },
               ),
               const SizedBox(
                 height: 24.0,
@@ -88,9 +101,10 @@ class RouteSelectionPage extends StatelessWidget {
                 (index) => Padding(
                   padding: const EdgeInsets.only(bottom: 24.0),
                   child: CustomTextField(
+                    controller: fieldsData[index].controller,
                     labelText: fieldsData[index].label,
                     prefixIcon: fieldsData[index].icon,
-                    mainColor: R.secondaryColor,
+                    mainColor: Colors.white,
                     secondaryColor: R.tertiaryColor,
                   ),
                 ),
@@ -99,11 +113,29 @@ class RouteSelectionPage extends StatelessWidget {
           ),
         ),
       );
+
+  void _fillFields() {
+    for (var field in fieldsData) {
+      for (int i = 0; i < field.text.length; i++) {
+        Future.delayed(
+          Duration(milliseconds: 100 * i),
+          () => field.controller.text += field.text[i],
+        );
+      }
+    }
+  }
 }
 
 class TextFieldData {
   final Icon icon;
   final String label;
+  final TextEditingController controller;
+  final String text;
 
-  TextFieldData(this.icon, this.label);
+  TextFieldData(
+    this.icon,
+    this.label,
+    this.controller,
+    this.text,
+  );
 }

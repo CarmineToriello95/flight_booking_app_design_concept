@@ -38,6 +38,7 @@ class LoginPage extends StatelessWidget {
   }
 
   Widget get _buildEmailField => CustomTextField(
+        controller: TextEditingController(),
         labelText: "E-MAIL",
         prefixIcon: Icon(
           Icons.email,
@@ -48,6 +49,7 @@ class LoginPage extends StatelessWidget {
       );
 
   Widget get _buildPasswordField => CustomTextField(
+        controller: TextEditingController(),
         labelText: "PASSWORD",
         prefixIcon: Icon(
           Icons.lock,

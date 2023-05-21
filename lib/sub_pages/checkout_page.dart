@@ -100,48 +100,48 @@ class CheckoutPage extends StatelessWidget {
           fontSize: 32,
         ),
       ),
-      SizedBox(
+      const SizedBox(
         height: 8.0,
       ),
       Text(
         flightData.departure,
-        style: TextStyle(
+        style: const TextStyle(
           color: Colors.white,
           fontWeight: FontWeight.bold,
         ),
       )
     ];
     final secondColumn = [
-      Text(
+      const Text(
         "FLIGHT DATE",
         style: TextStyle(
           color: Colors.white,
         ),
       ),
-      SizedBox(
+      const SizedBox(
         height: 8.0,
       ),
       Text(
         flightData.date,
-        style: TextStyle(
+        style: const TextStyle(
           color: Colors.white,
           fontWeight: FontWeight.bold,
         ),
       )
     ];
     final thirdColumn = [
-      Text(
+      const Text(
         "BOARDING TIME",
         style: TextStyle(
           color: Colors.white,
         ),
       ),
-      SizedBox(
+      const SizedBox(
         height: 8.0,
       ),
       Text(
         flightData.time,
-        style: TextStyle(
+        style: const TextStyle(
           color: Colors.white,
           fontWeight: FontWeight.bold,
         ),
@@ -152,11 +152,11 @@ class CheckoutPage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         ...firstColumn,
-        SizedBox(
+        const SizedBox(
           height: 40.0,
         ),
         ...secondColumn,
-        SizedBox(height: 32.0),
+        const SizedBox(height: 32.0),
         ...thirdColumn,
       ],
     );
@@ -169,28 +169,28 @@ class CheckoutPage extends StatelessWidget {
         color: R.secondaryColor,
         size: 32.0,
       ),
-      SizedBox(
+      const SizedBox(
         height: 8.0,
       ),
       Text(
         flightData.duration,
-        style: TextStyle(
+        style: const TextStyle(
           color: Colors.white,
           fontWeight: FontWeight.bold,
         ),
       ),
     ];
     final secondColumn = [
-      Text(
+      const Text(
         "GATE",
         style: TextStyle(
           color: Colors.white,
         ),
       ),
-      SizedBox(
+      const SizedBox(
         height: 8.0,
       ),
-      Text(
+      const Text(
         "B2",
         style: TextStyle(
           color: Colors.white,
@@ -199,18 +199,18 @@ class CheckoutPage extends StatelessWidget {
       )
     ];
     final thirdColumn = [
-      Text(
+      const Text(
         "SEAT",
         style: TextStyle(
           color: Colors.white,
         ),
       ),
-      SizedBox(
+      const SizedBox(
         height: 8.0,
       ),
       Text(
         flightData.seat!,
-        style: TextStyle(
+        style: const TextStyle(
           color: Colors.white,
           fontWeight: FontWeight.bold,
         ),
@@ -221,11 +221,11 @@ class CheckoutPage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         ...firstColumn,
-        SizedBox(
+        const SizedBox(
           height: 40.0,
         ),
         ...secondColumn,
-        SizedBox(height: 32.0),
+        const SizedBox(height: 32.0),
         ...thirdColumn,
       ],
     );
@@ -240,46 +240,46 @@ class CheckoutPage extends StatelessWidget {
           fontSize: 32,
         ),
       ),
-      SizedBox(
+      const SizedBox(
         height: 8.0,
       ),
       Text(
         flightData.destination,
-        style: TextStyle(
+        style: const TextStyle(
           color: Colors.white,
           fontWeight: FontWeight.bold,
         ),
       ),
     ];
     final secondColumn = [
-      Text(
+      const Text(
         "FLIGHT NO",
         style: TextStyle(
           color: Colors.white,
         ),
       ),
-      SizedBox(
+      const SizedBox(
         height: 8.0,
       ),
       Text(
         flightData.flightNumber,
-        style: TextStyle(
+        style: const TextStyle(
           color: Colors.white,
           fontWeight: FontWeight.bold,
         ),
       )
     ];
     final thirdColumn = [
-      Text(
+      const Text(
         "CLASS",
         style: TextStyle(
           color: Colors.white,
         ),
       ),
-      SizedBox(
+      const SizedBox(
         height: 8.0,
       ),
-      Text(
+      const Text(
         "Economy",
         style: TextStyle(
           color: Colors.white,
@@ -292,11 +292,11 @@ class CheckoutPage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         ...firstColumn,
-        SizedBox(
+        const SizedBox(
           height: 40.0,
         ),
         ...secondColumn,
-        SizedBox(height: 32.0),
+        const SizedBox(height: 32.0),
         ...thirdColumn,
       ],
     );

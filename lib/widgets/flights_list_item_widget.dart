@@ -86,7 +86,7 @@ class FlightsListItemWidget extends StatelessWidget {
           ),
           Text(
             "${flightData.date} ${flightData.time}",
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
               fontSize: 12.0,

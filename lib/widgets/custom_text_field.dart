@@ -6,6 +6,7 @@ class CustomTextField extends StatelessWidget {
   final Color mainColor;
   final Color secondaryColor;
   final bool isTextObscure;
+  final TextEditingController controller;
 
   const CustomTextField({
     Key? key,
@@ -13,11 +14,13 @@ class CustomTextField extends StatelessWidget {
     required this.prefixIcon,
     required this.mainColor,
     required this.secondaryColor,
+    required this.controller,
     this.isTextObscure = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) => TextField(
+        controller: controller,
         decoration: InputDecoration(
           prefixIcon: prefixIcon,
           labelText: labelText,

@@ -120,9 +120,9 @@ class _SeatSelectionPageState extends State<SeatSelectionPage> {
               ),
             ),
           ),
-          Text(
+          const Text(
             "Seat",
-            style: const TextStyle(
+            style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,
             ),
@@ -144,17 +144,17 @@ class _SeatSelectionPageState extends State<SeatSelectionPage> {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     height: 100.0,
                   ),
                   Text(
-                    widget.flightData.date + "," + widget.flightData.time,
-                    style: TextStyle(
+                    "${widget.flightData.date} , ${widget.flightData.time}",
+                    style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 48.0,
                   ),
                   Text(
@@ -164,7 +164,7 @@ class _SeatSelectionPageState extends State<SeatSelectionPage> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 32.0,
                   ),
                   Padding(
@@ -176,7 +176,7 @@ class _SeatSelectionPageState extends State<SeatSelectionPage> {
                           flex: 2,
                           child: _buildSeatsGrid(leftSideSeats),
                         ),
-                        Spacer(
+                        const Spacer(
                           flex: 1,
                         ),
                         Expanded(
@@ -210,7 +210,7 @@ class _SeatSelectionPageState extends State<SeatSelectionPage> {
                 if (!seats[i].isBooked) {
                   if (_selectedSeat.value != null) {
                     _fadeInOutWidgetController.hide();
-                    Future.delayed(Duration(milliseconds: 300),
+                    Future.delayed(const Duration(milliseconds: 300),
                         () => _selectedSeat.value = seats[i]).whenComplete(
                       () => _fadeInOutWidgetController.show(),
                     );
