@@ -1,4 +1,4 @@
-import 'package:emirates_airlines_concept_ui/main_pages/home_page.dart';
+import 'package:emirates_airlines_concept_ui/login_page.dart';
 import 'package:emirates_airlines_concept_ui/utils/hard_coded_data.dart';
 import 'package:flutter/material.dart';
 
@@ -19,6 +19,6 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: HomePage());
+        home: LoginPage());
   }
 }

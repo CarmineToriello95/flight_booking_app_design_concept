@@ -12,7 +12,11 @@ import 'add_flight_page.dart';
 enum MainPageEnum { myFlights, addFlight }
 
 class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+  final Animation routeTransitionValue;
+  const HomePage({
+    super.key,
+    required this.routeTransitionValue,
+  });
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -48,6 +52,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
 
     _sheetAnimationController.forward().whenComplete(
       () {
+        _headerFadeInOutController.show();
         _fadingItemListController.showItems();
         _snakeButtonController.toggle();
       },
@@ -89,6 +94,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 32.0),
                 child: FadeInOutWidget(
+                  initialVisibilityValue: false,
                   slideDuration: const Duration(milliseconds: 500),
                   fadeInOutWidgetController: _headerFadeInOutController,
                   child: ValueListenableBuilder<MainPageEnum>(
@@ -134,25 +140,31 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         ),
       );
 
-  Widget get _buildHeader => Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          GestureDetector(
-            onTap: () => _snakeButtonController.toggle(),
-            child: Icon(
-              Icons.menu,
-              color: R.primaryColor,
-            ),
+  Widget get _buildHeader => AnimatedBuilder(
+        animation: widget.routeTransitionValue,
+        builder: (context, child) => Opacity(
+          opacity: 1.0 * widget.routeTransitionValue.value,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              GestureDetector(
+                onTap: () => _snakeButtonController.toggle(),
+                child: Icon(
+                  Icons.menu,
+                  color: R.primaryColor,
+                ),
+              ),
+              Container(
+                height: 40.0,
+                width: 40.0,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10.0),
+                  color: R.primaryColor,
+                ),
+              )
+            ],
           ),
-          Container(
-            height: 40.0,
-            width: 40.0,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10.0),
-              color: R.primaryColor,
-            ),
-          )
-        ],
+        ),
       );
 
   Widget get _buildBottomSheet => Container(
