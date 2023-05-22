@@ -75,6 +75,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  intl:
+    dependency: "direct main"
+    description:
+      name: intl
+      sha256: "3bc132a9dbce73a7e4a21a17d06e1878839ffbf975568bc875c60537824b0c4d"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.18.1"
   js:
     dependency: transitive
     description:
@@ -128,6 +136,15 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.99"
+  snake_button:
+    dependency: "direct main"
+    description:
+      path: "."
+      ref: main
+      resolved-ref: b2185bb716f82b93f52ae8f3a4f231b8aa9f31b0
+      url: "git@github.com:CarmineToriello95/snake_button"
+    source: git
+    version: "0.0.1"
   source_span:
     dependency: transitive
     description:
@@ -186,3 +203,4 @@ packages:
     version: "2.1.4"
 sdks:
   dart: ">=2.19.6 <3.0.0"
+  flutter: ">=1.17.0"
