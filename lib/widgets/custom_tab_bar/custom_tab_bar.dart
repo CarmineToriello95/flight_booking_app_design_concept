@@ -1,5 +1,5 @@
-import 'package:emirates_airlines_concept_ui/utils/r.dart';
-import 'package:emirates_airlines_concept_ui/widgets/custom_tab_bar/custom_tab_bar_controller.dart';
+import 'package:flight_booking_concept_ui/utils/r.dart';
+import 'package:flight_booking_concept_ui/widgets/custom_tab_bar/custom_tab_bar_controller.dart';
 import 'package:flutter/material.dart';
 
 class CustomTabBar extends StatefulWidget {

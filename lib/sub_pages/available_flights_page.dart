@@ -1,6 +1,6 @@
-import 'package:emirates_airlines_concept_ui/models/flight_data.dart';
-import 'package:emirates_airlines_concept_ui/utils/r.dart';
-import 'package:emirates_airlines_concept_ui/utils/hard_coded_data.dart';
+import 'package:flight_booking_concept_ui/models/flight_data.dart';
+import 'package:flight_booking_concept_ui/utils/r.dart';
+import 'package:flight_booking_concept_ui/utils/hard_coded_data.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/days_calendar_widget.dart';

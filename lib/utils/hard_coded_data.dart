@@ -1,7 +1,7 @@
-import 'package:emirates_airlines_concept_ui/models/flight_data.dart';
-import 'package:emirates_airlines_concept_ui/sub_pages/route_selection_page.dart';
-import 'package:emirates_airlines_concept_ui/widgets/custom_option_selector.dart';
-import 'package:emirates_airlines_concept_ui/widgets/days_calendar_widget.dart';
+import 'package:flight_booking_concept_ui/models/flight_data.dart';
+import 'package:flight_booking_concept_ui/sub_pages/route_selection_page.dart';
+import 'package:flight_booking_concept_ui/widgets/custom_option_selector.dart';
+import 'package:flight_booking_concept_ui/widgets/days_calendar_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'r.dart';

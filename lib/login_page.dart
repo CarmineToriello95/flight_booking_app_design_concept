@@ -1,10 +1,10 @@
-import 'package:emirates_airlines_concept_ui/main_pages/home_page.dart';
-import 'package:emirates_airlines_concept_ui/utils/hard_coded_data.dart';
-import 'package:emirates_airlines_concept_ui/widgets/custom_flutter_logo.dart';
-import 'package:emirates_airlines_concept_ui/widgets/custom_text_field.dart';
-import 'package:emirates_airlines_concept_ui/utils/r.dart';
-import 'package:emirates_airlines_concept_ui/widgets/fade_in_out_widget/fade_in_out_widget.dart';
-import 'package:emirates_airlines_concept_ui/widgets/fade_in_out_widget/fade_in_out_widget_controller.dart';
+import 'package:flight_booking_concept_ui/main_pages/home_page.dart';
+import 'package:flight_booking_concept_ui/utils/hard_coded_data.dart';
+import 'package:flight_booking_concept_ui/widgets/custom_flutter_logo.dart';
+import 'package:flight_booking_concept_ui/widgets/custom_text_field.dart';
+import 'package:flight_booking_concept_ui/utils/r.dart';
+import 'package:flight_booking_concept_ui/widgets/fade_in_out_widget/fade_in_out_widget.dart';
+import 'package:flight_booking_concept_ui/widgets/fade_in_out_widget/fade_in_out_widget_controller.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {

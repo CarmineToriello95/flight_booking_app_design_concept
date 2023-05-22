@@ -1,4 +1,4 @@
-import 'package:emirates_airlines_concept_ui/utils/r.dart';
+import 'package:flight_booking_concept_ui/utils/r.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 

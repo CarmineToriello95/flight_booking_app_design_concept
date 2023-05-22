@@ -1,4 +1,4 @@
-import 'package:emirates_airlines_concept_ui/widgets/fade_in_out_widget/fade_in_out_widget_controller.dart';
+import 'package:flight_booking_concept_ui/widgets/fade_in_out_widget/fade_in_out_widget_controller.dart';
 import 'package:flutter/material.dart';
 
 const Duration kOpacityDuration = Duration(milliseconds: 300);

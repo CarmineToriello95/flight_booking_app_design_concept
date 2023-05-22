@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.emirates_airlines_concept_ui">
+    package="com.example.flight_booking_concept_ui">
    <application
-        android:label="emirates_airlines_concept_ui"
+        android:label="flight_booking_concept_ui"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

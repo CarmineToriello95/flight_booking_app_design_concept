@@ -1,10 +1,10 @@
-import 'package:emirates_airlines_concept_ui/main_pages/add_flight_page_controller.dart';
-import 'package:emirates_airlines_concept_ui/sub_pages/checkout_page.dart';
-import 'package:emirates_airlines_concept_ui/sub_pages/seat_selection_page.dart';
-import 'package:emirates_airlines_concept_ui/widgets/custom_tab_bar/custom_tab_bar.dart';
-import 'package:emirates_airlines_concept_ui/widgets/custom_tab_bar/custom_tab_bar_controller.dart';
-import 'package:emirates_airlines_concept_ui/widgets/fade_in_out_widget/fade_in_out_widget.dart';
-import 'package:emirates_airlines_concept_ui/widgets/fade_in_out_widget/fade_in_out_widget_controller.dart';
+import 'package:flight_booking_concept_ui/main_pages/add_flight_page_controller.dart';
+import 'package:flight_booking_concept_ui/sub_pages/checkout_page.dart';
+import 'package:flight_booking_concept_ui/sub_pages/seat_selection_page.dart';
+import 'package:flight_booking_concept_ui/widgets/custom_tab_bar/custom_tab_bar.dart';
+import 'package:flight_booking_concept_ui/widgets/custom_tab_bar/custom_tab_bar_controller.dart';
+import 'package:flight_booking_concept_ui/widgets/fade_in_out_widget/fade_in_out_widget.dart';
+import 'package:flight_booking_concept_ui/widgets/fade_in_out_widget/fade_in_out_widget_controller.dart';
 import 'package:flutter/material.dart';
 
 import '../sub_pages/available_flights_page.dart';
