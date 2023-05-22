@@ -1,7 +1,7 @@
 import 'package:emirates_airlines_concept_ui/widgets/fading_item_list/fading_item_list_controller.dart';
 import 'package:flutter/material.dart';
 
-import '../../resources/r.dart';
+import '../../utils/r.dart';
 
 class FadingItemList extends StatefulWidget {
   final List<Widget> listItems;

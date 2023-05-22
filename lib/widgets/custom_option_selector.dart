@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../resources/r.dart';
+import '../utils/r.dart';
 
 class CustomOptionSelector extends StatefulWidget {
   final List<CustomOptionSelectorData> options;

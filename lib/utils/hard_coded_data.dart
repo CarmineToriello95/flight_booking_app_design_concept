@@ -4,7 +4,7 @@ import 'package:emirates_airlines_concept_ui/widgets/custom_option_selector.dart
 import 'package:emirates_airlines_concept_ui/widgets/days_calendar_widget.dart';
 import 'package:flutter/material.dart';
 
-import '../resources/r.dart';
+import 'r.dart';
 
 class HardCodedData {
   static late final List<FlightData> _myFlightsList;

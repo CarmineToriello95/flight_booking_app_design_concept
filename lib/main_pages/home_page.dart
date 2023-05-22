@@ -1,5 +1,5 @@
 import 'package:emirates_airlines_concept_ui/main_pages/my_flights_list_page.dart';
-import 'package:emirates_airlines_concept_ui/resources/r.dart';
+import 'package:emirates_airlines_concept_ui/utils/r.dart';
 import 'package:emirates_airlines_concept_ui/widgets/fade_in_out_widget/fade_in_out_widget.dart';
 import 'package:emirates_airlines_concept_ui/widgets/fade_in_out_widget/fade_in_out_widget_controller.dart';
 import 'package:emirates_airlines_concept_ui/widgets/fading_item_list/fading_item_list_controller.dart';

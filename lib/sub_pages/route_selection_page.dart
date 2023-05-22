@@ -1,6 +1,6 @@
 import 'package:emirates_airlines_concept_ui/utils/hard_coded_data.dart';
 import 'package:emirates_airlines_concept_ui/widgets/custom_text_field.dart';
-import 'package:emirates_airlines_concept_ui/resources/r.dart';
+import 'package:emirates_airlines_concept_ui/utils/r.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/custom_option_selector.dart';
