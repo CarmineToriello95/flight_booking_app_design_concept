@@ -1,28 +1,9 @@
 import 'package:emirates_airlines_concept_ui/resources/r.dart';
+import 'package:emirates_airlines_concept_ui/utils/hard_coded_data.dart';
 import 'package:flutter/material.dart';
 
 import '../models/flight_data.dart';
 import '../widgets/custom_option_selector.dart';
-
-final List<CustomOptionSelectorData> paymentOptions = [
-  CustomOptionSelectorData(
-    text: "iPay",
-    id: "0",
-    leftBorder: false,
-    topBorder: false,
-  ),
-  CustomOptionSelectorData(
-    text: "PayPal",
-    id: "1",
-    topBorder: false,
-  ),
-  CustomOptionSelectorData(
-    text: "Wallet",
-    id: "2",
-    topBorder: false,
-    rightBorder: false,
-  )
-];
 
 class CheckoutPage extends StatelessWidget {
   final Function(bool)? isSelectionCompleted;
@@ -84,7 +65,7 @@ class CheckoutPage extends StatelessWidget {
               height: 24.0,
             ),
             CustomOptionSelector(
-              options: paymentOptions,
+              options: HardCodedData.checkoutPagePaymentOptions,
               onOptionClicked: (_) => isSelectionCompleted?.call(true),
             ),
           ],

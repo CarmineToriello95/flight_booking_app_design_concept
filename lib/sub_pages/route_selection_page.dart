@@ -1,76 +1,9 @@
+import 'package:emirates_airlines_concept_ui/utils/hard_coded_data.dart';
 import 'package:emirates_airlines_concept_ui/widgets/custom_text_field.dart';
 import 'package:emirates_airlines_concept_ui/resources/r.dart';
 import 'package:flutter/material.dart';
 
 import '../widgets/custom_option_selector.dart';
-
-final List<TextFieldData> fieldsData = [
-  TextFieldData(
-    Icon(
-      Icons.flight_takeoff,
-      color: R.secondaryColor,
-    ),
-    "FROM",
-    TextEditingController(),
-    "Dabaca",
-  ),
-  TextFieldData(
-    Icon(
-      Icons.flight_land,
-      color: R.secondaryColor,
-    ),
-    "TO",
-    TextEditingController(),
-    "Almedy",
-  ),
-  TextFieldData(
-    Icon(
-      Icons.calendar_month,
-      color: R.secondaryColor,
-    ),
-    "DATE",
-    TextEditingController(),
-    "May 19",
-  ),
-  TextFieldData(
-    Icon(
-      Icons.people,
-      color: R.secondaryColor,
-    ),
-    "TRAVELER",
-    TextEditingController(),
-    "2",
-  ),
-  TextFieldData(
-    Icon(
-      Icons.flight_class,
-      color: R.secondaryColor,
-    ),
-    "CLASS",
-    TextEditingController(),
-    "Economy",
-  ),
-];
-
-final List<CustomOptionSelectorData> routeData = [
-  CustomOptionSelectorData(
-    text: "One way",
-    id: "0",
-    leftBorder: false,
-    topBorder: false,
-  ),
-  CustomOptionSelectorData(
-    text: "Roundtrip",
-    id: "1",
-    topBorder: false,
-  ),
-  CustomOptionSelectorData(
-    text: "Multiple",
-    id: "2",
-    topBorder: false,
-    rightBorder: false,
-  )
-];
 
 class RouteSelectionPage extends StatelessWidget {
   final Function(bool)? isSelectionCompleted;
@@ -87,7 +20,7 @@ class RouteSelectionPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CustomOptionSelector(
-                options: routeData,
+                options: HardCodedData.routePageRouteOptions,
                 onOptionClicked: (_) {
                   _fillFields();
                   isSelectionCompleted?.call(true);
@@ -97,13 +30,14 @@ class RouteSelectionPage extends StatelessWidget {
                 height: 24.0,
               ),
               ...List.generate(
-                fieldsData.length,
+                HardCodedData.routePageFieldsData.length,
                 (index) => Padding(
                   padding: const EdgeInsets.only(bottom: 24.0),
                   child: CustomTextField(
-                    controller: fieldsData[index].controller,
-                    labelText: fieldsData[index].label,
-                    prefixIcon: fieldsData[index].icon,
+                    controller:
+                        HardCodedData.routePageFieldsData[index].controller,
+                    labelText: HardCodedData.routePageFieldsData[index].label,
+                    prefixIcon: HardCodedData.routePageFieldsData[index].icon,
                     mainColor: Colors.white,
                     secondaryColor: R.tertiaryColor,
                   ),
@@ -115,7 +49,7 @@ class RouteSelectionPage extends StatelessWidget {
       );
 
   void _fillFields() {
-    for (var field in fieldsData) {
+    for (var field in HardCodedData.routePageFieldsData) {
       for (int i = 0; i < field.text.length; i++) {
         Future.delayed(
           Duration(milliseconds: 100 * i),

@@ -18,7 +18,7 @@ class MyFlightsListPage extends StatelessWidget {
         listItems: List.generate(
           5,
           (index) => FlightsListItemWidget(
-            flightData: Utils.myFlightsData[index],
+            flightData: HardCodedData.myFlightsData[index],
           ),
         ),
       );

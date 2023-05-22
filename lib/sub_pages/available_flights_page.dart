@@ -65,7 +65,8 @@ class _AvailableFlightsPageState extends State<AvailableFlightsPage> {
   Widget _buildFlightCard(int itemIndex, String flightNumber) => ElevatedButton(
         style: ElevatedButton.styleFrom(
           backgroundColor:
-              Utils.availableFlights[itemIndex].flightNumber == flightNumber
+              HardCodedData.availableFlights[itemIndex].flightNumber ==
+                      flightNumber
                   ? R.tertiaryColor.withOpacity(0.5)
                   : R.primaryColor,
           shape: RoundedRectangleBorder(
@@ -75,16 +76,16 @@ class _AvailableFlightsPageState extends State<AvailableFlightsPage> {
         ),
         onPressed: () {
           _selectedFlight.value =
-              Utils.availableFlights[itemIndex].flightNumber;
+              HardCodedData.availableFlights[itemIndex].flightNumber;
           widget.isSelectionCompleted?.call(
             true,
-            Utils.availableFlights[itemIndex].copyWith(
+            HardCodedData.availableFlights[itemIndex].copyWith(
               price: 170.00,
             ),
           );
         },
         child: FlightsListItemWidget.withPrice(
-          flightData: Utils.availableFlights[itemIndex],
+          flightData: HardCodedData.availableFlights[itemIndex],
           ticketPrice: 170.00,
         ),
       );

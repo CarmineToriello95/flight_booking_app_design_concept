@@ -1,4 +1,5 @@
 import 'package:emirates_airlines_concept_ui/main_pages/home_page.dart';
+import 'package:emirates_airlines_concept_ui/utils/hard_coded_data.dart';
 import 'package:emirates_airlines_concept_ui/widgets/custom_flutter_logo.dart';
 import 'package:emirates_airlines_concept_ui/widgets/custom_text_field.dart';
 import 'package:emirates_airlines_concept_ui/resources/r.dart';
@@ -13,6 +14,7 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    _fillFields();
     const hSpace = SizedBox(
       height: 24.0,
     );
@@ -35,9 +37,9 @@ class LoginPage extends StatelessWidget {
                     ),
                     hSpace,
                     hSpace,
-                    _buildEmailField,
+                    _buildEmailField(),
                     hSpace,
-                    _buildPasswordField,
+                    _buildPasswordField(),
                     hSpace,
                     Text(
                       "Forget Password?",
@@ -57,28 +59,29 @@ class LoginPage extends StatelessWidget {
     );
   }
 
-  Widget get _buildEmailField => CustomTextField(
-        controller: TextEditingController(),
-        labelText: "E-MAIL",
-        prefixIcon: Icon(
-          Icons.email,
-          color: R.secondaryColor,
-        ),
-        mainColor: R.secondaryColor,
-        secondaryColor: R.tertiaryColor,
-      );
+  Widget _buildEmailField() {
+    final emailFieldData = HardCodedData.loginPageFieldsData[0];
+    return CustomTextField(
+      controller: emailFieldData.controller,
+      labelText: emailFieldData.label,
+      prefixIcon: emailFieldData.icon,
+      mainColor: R.secondaryColor,
+      secondaryColor: R.tertiaryColor,
+    );
+  }
 
-  Widget get _buildPasswordField => CustomTextField(
-        controller: TextEditingController(),
-        labelText: "PASSWORD",
-        prefixIcon: Icon(
-          Icons.lock,
-          color: R.secondaryColor,
-        ),
-        mainColor: R.secondaryColor,
-        secondaryColor: R.tertiaryColor,
-        isTextObscure: true,
-      );
+  Widget _buildPasswordField() {
+    final passwordFieldData = HardCodedData.loginPageFieldsData[0];
+
+    return CustomTextField(
+      controller: passwordFieldData.controller,
+      labelText: passwordFieldData.label,
+      prefixIcon: passwordFieldData.icon,
+      mainColor: R.secondaryColor,
+      secondaryColor: R.tertiaryColor,
+      isTextObscure: true,
+    );
+  }
 
   Widget _buildLoginButton(BuildContext context) => FilledButton(
         style: FilledButton.styleFrom(
@@ -127,4 +130,23 @@ class LoginPage extends StatelessWidget {
           ],
         ),
       );
+
+  void _fillFields() {
+    Future.delayed(const Duration(seconds: 1), () {
+      /// reset fields
+      for (var field in HardCodedData.loginPageFieldsData) {
+        field.controller.text = "";
+      }
+
+      /// populate fields
+      for (var field in HardCodedData.loginPageFieldsData) {
+        for (int i = 0; i < field.text.length; i++) {
+          Future.delayed(
+            Duration(milliseconds: 20 * i),
+            () => field.controller.text += field.text[i],
+          );
+        }
+      }
+    });
+  }
 }
