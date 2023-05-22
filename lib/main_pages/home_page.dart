@@ -147,12 +147,9 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              GestureDetector(
-                onTap: () => _snakeButtonController.toggle(),
-                child: Icon(
-                  Icons.menu,
-                  color: R.primaryColor,
-                ),
+              Icon(
+                Icons.menu,
+                color: R.primaryColor,
               ),
               Container(
                 height: 40.0,
@@ -160,6 +157,11 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10.0),
                   color: R.primaryColor,
+                ),
+                child: Icon(
+                  Icons.person,
+                  color: R.secondaryColor,
+                  size: 40.0,
                 ),
               )
             ],

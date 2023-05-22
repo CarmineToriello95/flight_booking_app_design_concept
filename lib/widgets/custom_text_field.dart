@@ -35,6 +35,6 @@ class CustomTextField extends StatelessWidget {
         ),
         cursorColor: mainColor,
         obscureText: isTextObscure,
-        style: TextStyle(color: mainColor),
+        style: TextStyle(color: mainColor, fontWeight: FontWeight.bold),
       );
 }

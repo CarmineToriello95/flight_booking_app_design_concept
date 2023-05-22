@@ -1,4 +1,5 @@
 import 'package:emirates_airlines_concept_ui/resources/r.dart';
+import 'package:emirates_airlines_concept_ui/widgets/custom_flutter_logo.dart';
 import 'package:emirates_airlines_concept_ui/widgets/fade_in_out_widget/fade_in_out_widget.dart';
 import 'package:emirates_airlines_concept_ui/widgets/fade_in_out_widget/fade_in_out_widget_controller.dart';
 import 'package:flutter/material.dart';
@@ -145,7 +146,13 @@ class _SeatSelectionPageState extends State<SeatSelectionPage> {
               child: Column(
                 children: [
                   const SizedBox(
-                    height: 100.0,
+                    height: 50.0,
+                  ),
+                  const CustomFlutterLogo(
+                    size: 40.0,
+                  ),
+                  const SizedBox(
+                    height: 20.0,
                   ),
                   Text(
                     "${widget.flightData.date} , ${widget.flightData.time}",
@@ -155,7 +162,7 @@ class _SeatSelectionPageState extends State<SeatSelectionPage> {
                     ),
                   ),
                   const SizedBox(
-                    height: 48.0,
+                    height: 32.0,
                   ),
                   Text(
                     "Economy class",
@@ -256,11 +263,11 @@ class PlaneClipper extends CustomClipper<Path> {
   Path getClip(Size size) {
     var path = Path();
     path.moveTo(10, size.height);
-    path.lineTo(0, size.height / 3);
+    path.lineTo(0, size.height / 2.3);
 
     path.quadraticBezierTo(size.width / 5, 0, size.width / 2, 0);
     path.quadraticBezierTo(
-        size.width - size.width / 5, 0, size.width, size.height / 3);
+        size.width - size.width / 5, 0, size.width, size.height / 2.3);
     path.lineTo(size.width - 10, size.height);
     path.lineTo(0, size.height);
     return path;
