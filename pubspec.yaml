@@ -31,10 +31,7 @@ dependencies:
   flutter:
     sdk: flutter
   intl: ^0.18.0
-  snake_button:
-    git:
-      url: git@github.com:CarmineToriello95/snake_button
-      ref: main
+  snake_button: ^0.0.4
 
 
   # The following adds the Cupertino Icons font to your application.
